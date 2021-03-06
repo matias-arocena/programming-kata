@@ -1,12 +1,16 @@
 # programming-kata
-I use this repo to keep practising programming algorithms.
+Miscellaneous repo to practise or implement CS stuff.
 
-## Rule
-I am alowed to use std if the algorithm or data structure is already implemented in this repo.
+## Compilation
+- Install conan.io
+- `pip install -r requirements.txt`
+- `mkdir build && cd build`
+- `conan install ..`
 
-## To-Do
-- [ ] Create folders to separate implementations, test and library (used to implement common algorithms and data structures)
-- [ ] Research TDD in C++
-- [ ] Implement https://www.spoj.com/problems/DISCRT/
-- [ ] Create makefile
-- [ ] Create problem_roadmap.md and figure out next problems to solve
+### Windows
+- `cmake .. -G "Visual Studio 16"`
+- `cmake --build . --config Release` 
+
+### Unix-like
+- `cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release`
+- `cmake --build .`
