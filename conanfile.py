@@ -11,7 +11,7 @@ class ProgrammingKataConan(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
     generators = "cmake"
     exports_sources = "*"
-    requires = "boost/1.75.0"
+    requires = ["boost/1.75.0", "glew/2.2.0"]
 
     def generate(self):
         tc = MakeToolchain(self)

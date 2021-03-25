@@ -7,7 +7,7 @@
 
 #include "../computer-graphics/Vector.h"
 
-const float TOLERANCE 0.00001f
+const float TOLERANCE = 0.00001f;
 
 BOOST_AUTO_TEST_CASE( test_vector_getters )
 {
