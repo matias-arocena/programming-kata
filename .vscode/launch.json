@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch CountInversions",
+            "request": "launch",
+            "mainClass": "algorithms.java.CountInversions",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch NumberOfInversion",
+            "request": "launch",
+            "mainClass": "algorithms.java.NumberOfInversion",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch Superdome",
+            "request": "launch",
+            "mainClass": "algorithms.java.Superdome",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArrayRotation",
+            "request": "launch",
+            "mainClass": "algorithms.java.ArrayRotation",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch ReverseString",
+            "request": "launch",
+            "mainClass": "algorithms.java.ReverseString",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestClass",
+            "request": "launch",
+            "mainClass": "algorithms.java.TestClass",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch ReverseString",
+            "request": "launch",
+            "mainClass": "ReverseString",
+            "projectName": "programming-kata_99971f60"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
