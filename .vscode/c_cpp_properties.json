@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:\\Users\\Matias\\Projects\\programming-kata\\lib\\SDL2-2.0.14\\include"
+                "C:\\Users\\matias.ra\\Projects\\programming-kata\\lib\\SDL2-2.0.14\\include"
             ],
             "defines": [
                 "_DEBUG",

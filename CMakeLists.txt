@@ -21,3 +21,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 add_executable(emptySDL 
   ${CMAKE_BINARY_DIR}/../computer-graphics/emptySDL.cpp)
 target_link_libraries(emptySDL ${SDL2_LIBRARIES} ${CONAN_LIBS})
+
+add_executable(firstPolygon 
+  ${CMAKE_BINARY_DIR}/../computer-graphics/firstPolygon.cpp)
+target_link_libraries(firstPolygon ${SDL2_LIBRARIES} ${CONAN_LIBS})
