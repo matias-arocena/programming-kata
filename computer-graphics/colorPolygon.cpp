@@ -5,7 +5,7 @@
 
 
 int main(int argv, char** args) {
-    SDL_Window* window = SDL_CreateWindow("firstPolygon",
+    SDL_Window* window = SDL_CreateWindow("colorPolygon",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         640, 480, SDL_WINDOW_OPENGL);
     if (window == nullptr) {
@@ -23,19 +23,17 @@ int main(int argv, char** args) {
                 << std::endl;
     }
 
-
     glMatrixMode(GL_PROJECTION);
     glClearColor(0, 0, 0, 1);
-    gluPerspective(45, 2048/1024, 0.1, 100);
-    glEnable(GL_DEPTH_TEST);
-
+    gluPerspective(45, 640/480, 0.1, 100);
     glMatrixMode(GL_MODELVIEW);   
 
-    GLdouble zoom = 50;
+    GLdouble zoom = 15;
     GLdouble cameraX = 0;
     GLdouble cameraY = 0;
 
     char state = 0;
+    bool fullscreen = false;
 
     bool running = true;
     while(running) {
@@ -68,10 +66,18 @@ int main(int argv, char** args) {
                 case SDLK_c:
                     cameraX = 0;
                     cameraY = 0;
-                    zoom = 5;
+                    zoom = 15;
                     break;
                 case SDLK_SPACE:
                     state = (state + 1) % 3;
+                    break;
+                case SDLK_F11:
+                    if(fullscreen) {
+                        SDL_SetWindowFullscreen(window, SDL_FALSE);
+                    } else {
+                        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                    }
+                    fullscreen = !fullscreen;
                     break;
                 default:
                     break;
@@ -83,24 +89,33 @@ int main(int argv, char** args) {
         gluLookAt(0, 0, zoom, cameraX, cameraY, 0, 0, 1, 0);
 
         glBegin(GL_TRIANGLES);
+            glColor3d(1, 1, 1);
             glVertex3d(-1.5,  1, -6);
+            glColor3d(1, 1, 1);
             glVertex3d(-2.5, -1, -6);
+            glColor3d(1, 1, 1);
             glVertex3d(-0.5, -1, -6);
         glEnd();
         
         glBegin(GL_POLYGON);
             glVertex3d(0.5, 1, -6);
+            glColor3d(1, 1, 1);
             glVertex3d(2.5, 1, -6);
+            glColor3d(1, 1, 1);
             glVertex3d(2.5, -1, -6);
+            glColor3d(1, 1, 1);
             glVertex3d(0.5, -1, -6);
         glEnd();
 
         if (state > 0) {
-            glTranslatef(-1.5, 0, -6);
+            glTranslatef(-1.5f, 0.0f, -5.9f);
         
             glBegin(GL_TRIANGLES);
+                glColor3f(1, 0, 0);
                 glVertex3d(0, 1, 0);
+                glColor3f(0, 1, 0);
                 glVertex3d(-1, -1, 0);
+                glColor3f(0, 0, 1);
                 glVertex3d(1, -1, 0);
             glEnd();
         }
@@ -109,13 +124,14 @@ int main(int argv, char** args) {
             glTranslatef(3, 0, 0);
         
             glBegin(GL_POLYGON);
+                glColor3f(0.4f, 0.4f, 1.f);
                 glVertex3d(-1, 1, 0);
                 glVertex3d(1, 1, 0);
                 glVertex3d(1, -1, 0);
                 glVertex3d(-1, -1, 0);
             glEnd();
         }
-            
+
         SDL_GL_SwapWindow(window);
     }
 
