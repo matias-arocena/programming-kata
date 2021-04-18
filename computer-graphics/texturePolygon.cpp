@@ -49,7 +49,8 @@ int main(int argv, char** args) {
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_BGR, GL_UNSIGNED_BYTE, datos);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_BGR, GL_UNSIGNED_BYTE, datos);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGB, w, h, GL_BGR, GL_UNSIGNED_BYTE, datos);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     //FIN TEXTURA
 
@@ -131,11 +132,13 @@ int main(int argv, char** args) {
 
         glTranslatef(3.0, 0, 0);
 
+        //glPushMatrix();
         glScaled(polygonSize, polygonSize, 0.0);
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, textura);
         
+
         glBegin(GL_POLYGON);
             glColor3f(1.0f, 1.0f, 1.0f);
 
@@ -153,6 +156,8 @@ int main(int argv, char** args) {
 
         glEnd();
         glDisable(GL_TEXTURE_2D);
+
+        //glPopMatrix();
 
         SDL_GL_SwapWindow(window);
     }
