@@ -58,6 +58,7 @@ int main(int argv, char** args) {
     GLdouble cameraY = 0;
 
     char state = 0;
+    GLdouble polygonSize = 3.0;
     bool fullscreen = false;
 
     bool running = true;
@@ -75,6 +76,12 @@ int main(int argv, char** args) {
                 break;
             case SDLK_KP_MINUS:
                 zoom += 0.4;
+                break;
+            case SDLK_UP:
+                polygonSize += 0.01;
+                break;
+            case SDLK_DOWN:
+                polygonSize -= 0.01;
                 break;
             case SDLK_w:
                 cameraY += 0.01;
@@ -122,44 +129,37 @@ int main(int argv, char** args) {
         glVertex3d(1, -1, 0);
         glEnd();
 
-        glTranslatef(3, 0, 0);
+        glTranslatef(3.0, 0, 0);
 
-        glEnable(GL_TEXTURE);
+        glScaled(polygonSize, polygonSize, 0.0);
+
+        glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, textura);
+        
+        glBegin(GL_POLYGON);
+            glColor3f(1.0f, 1.0f, 1.0f);
 
-        //glBegin(GL_POLYGON);
-        //    glColor3f(0.0f, 1.0f, 1.0f);
+            glTexCoord2d(49.0 / 512.0, (512.0 - 212.0 - 51.0) / 512);
+            glVertex3d(-0.5, (212.0 / 512.0) / -2, 0);
 
-        //    glTexCoord2d(49.0f, 51.0f);
-        //    glVertex3d(-1, 1, 0);
+            glTexCoord2d((49.0 + 452.0) / 512.0, (512.0 - 212.0 - 51.0) / 512);
+            glVertex3d(0.5, (212.0 / 512.0) / -2, 0);
 
-        //    glTexCoord2d(501.0f, 51.0f);
-        //    glVertex3d(1, 1, 0);
+            glTexCoord2d((49.0 + 452.0) / 512.0, (512.0 - 51.0) / 512);
+            glVertex3d(0.5, (212.0 / 512.0) / 2, 0);
 
-        //    glTexCoord2d(501.0f, 253.0f);
-        //    glVertex3d(1, -1, 0);
+            glTexCoord2d(49.0 / 512.0, (512.0 - 51.0) / 512);
+            glVertex3d(-0.5, (212.0 / 512.0) / 2, 0);
 
-        //    glTexCoord2d(49.0f, 253.0f);
-        //    glVertex3d(-1, -1, 0);
-
-        //glEnd();
-
-        glBegin(GL_TRIANGLES);
-            glColor3f(0.0, 1.0, 1.0);
-            glTexCoord2f(0, 0);
-            glVertex3f(3., -1., 0.);
-            glTexCoord2f(0, 1);
-            glVertex3f(1., -1., 0.);
-            glTexCoord2f(1, 0);
-            glVertex3f(2., 1., 0.);
         glEnd();
-        glDisable(GL_TEXTURE);
-
+        glDisable(GL_TEXTURE_2D);
 
         SDL_GL_SwapWindow(window);
     }
 
     SDL_GL_DeleteContext(glContext);
+    SDL_DestroyWindow(window);
     SDL_Quit();
+    return 0;
 }
 
