@@ -1,4 +1,4 @@
-package main
+package algorithms
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func main() {
+func CyclicShift() {
 	reader := bufio.NewReader(os.Stdin)
 
 	testCasesInput, _ := reader.ReadString('\r')
@@ -23,20 +23,24 @@ func main() {
 
 		a, _ := reader.ReadString('\n')
 
-		timesEqual := 0
-		rotations := 0
-		maximum := getMaximum(a, n)
-		for timesEqual < k {
-			current, _ := strconv.ParseUint(strings.TrimSpace(a), 2, 64)
-			if current == maximum {
-				timesEqual++
-			}
-			a = rotation(a)
-			rotations++
-		}
-
+		rotations := computeRotations(n, k, a)
 		fmt.Println(rotations)
 	}
+}
+
+func computeRotations(n int, k int, a string) int {
+	timesEqual := 0
+	rotations := -1
+	maximum := getMaximum(a, n)
+	for timesEqual < k {
+		current, _ := strconv.ParseUint(strings.TrimSpace(a), 2, 64)
+		if current == maximum {
+			timesEqual++
+		}
+		a = rotation(a)
+		rotations++
+	}
+	return rotations
 }
 
 func getMaximum(a string, num int) uint64 {
