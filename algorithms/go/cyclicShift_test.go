@@ -32,6 +32,14 @@ func Test_computeRotations(t *testing.T) {
 		},
 		{
 			args: args{
+				n: 6,
+				k: 4,
+				a: "010101",
+			},
+			want: 7,
+		},
+		{
+			args: args{
 				n: 5,
 				k: 2,
 				a: "01111",

@@ -21,7 +21,8 @@ func CyclicShift() {
 		kInput, _ := reader.ReadString('\n')
 		k, _ := strconv.Atoi(strings.TrimSpace(kInput))
 
-		a, _ := reader.ReadString('\n')
+		aInput, _ := reader.ReadString('\n')
+		a := strings.TrimSpace(aInput)
 
 		rotations := computeRotations(n, k, a)
 		fmt.Println(rotations)
@@ -29,30 +30,35 @@ func CyclicShift() {
 }
 
 func computeRotations(n int, k int, a string) int {
-	timesEqual := 0
-	rotations := -1
-	maximum := getMaximum(a, n)
-	for timesEqual < k {
-		current, _ := strconv.ParseUint(strings.TrimSpace(a), 2, 64)
-		if current == maximum {
-			timesEqual++
-		}
-		a = rotation(a)
-		rotations++
+	maximums, numberOfMaximums := getIndexOfMaximums(a, n)
+	if k > numberOfMaximums {
+		return (k/numberOfMaximums)*n + maximums[(k-1)%numberOfMaximums]
+	} else {
+		return maximums[k-1]
 	}
-	return rotations
 }
 
-func getMaximum(a string, num int) uint64 {
+func getIndexOfMaximums(a string, num int) ([]int, int) {
 	maximum := uint64(0)
+	var maximumIndex []int
+	var numberOfMaximums int
 	for i := 0; i < num; i++ {
 		current, _ := strconv.ParseUint(a, 2, 64)
 		if current > maximum {
+			maximumIndex = make([]int, 0)
+			maximumIndex = append(maximumIndex, i)
+
 			maximum = current
+
+			numberOfMaximums = 1
+		} else if current == maximum {
+			maximumIndex = append(maximumIndex, i)
+			numberOfMaximums++
 		}
+
 		a = rotation(a)
 	}
-	return maximum
+	return maximumIndex, numberOfMaximums
 }
 
 func rotation(a string) string {
